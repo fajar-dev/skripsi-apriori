@@ -25,22 +25,22 @@ class AnalystController extends Controller
             $itemset = [];
 
             if (!empty($row->income)) {
-                $itemset[] = "penghasilan=" . $row->income;
+                $itemset[] = "Income=" . $row->income;
             }
             if (!empty($row->spending)) {
-                $itemset[] = "pengeluaran=" . $row->spending;
+                $itemset[] = "Spending=" . $row->spending;
             }
             if (!empty($row->job)) {
-                $itemset[] = "pekerjaan=" . $row->job;
+                $itemset[] = "Job=" . $row->job;
             }
             if (!empty($row->disability_type)) {
-                $itemset[] = "jenis_disabilitas=" . $row->disability_type;
+                $itemset[] = "Disability yype=" . $row->disability_type;
             }
             if (!empty($row->residence_condition)) {
-                $itemset[] = "kondisi=" . $row->residence_condition;
+                $itemset[] = "Residence condition=" . $row->residence_condition;
             }
             if (!empty($row->electricity_capacity)) {
-                $itemset[] = "daya=" . $row->electricity_capacity;
+                $itemset[] = "Electricity capacity=" . $row->electricity_capacity;
             }
 
             $transactions[] = $itemset;
