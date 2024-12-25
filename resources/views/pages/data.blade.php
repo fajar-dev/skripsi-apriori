@@ -21,9 +21,9 @@
                         <a href="#" class="btn btn-icon btn-dark" data-bs-toggle="modal" data-bs-target="#import">
                           <i class="ki-outline ki-file-up fs-1"></i>                      
                         </a>
-                        <a href="#" class="btn btn-icon btn-danger">
+                        <button id="{{ route('data.destroy.all') }}" class="btn btn-icon btn-danger btn-del">
                           <i class="ki-outline ki-trash fs-1"></i>                      
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="modal fade" tabindex="-1" id="add">

@@ -97,4 +97,9 @@ class DataController extends Controller
         Excel::import(new DataImport, $request->file('file'));
         return redirect()->route('data')->with('success','Data has been imported successfully');
     }
+
+    public function destroyAll(){
+        Data::truncate(); 
+        return redirect()->route('data')->with('success','Data has been deleted successfully');
+    }
 }

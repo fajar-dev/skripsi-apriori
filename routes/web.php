@@ -18,6 +18,7 @@ Route::get('/auth/logout', [AuthController::class, 'logout'])->name('logout')->m
 Route::prefix('/data')->group(function () {
   Route::get('/', [DataController::class, 'index'])->name('data');
   Route::post('/', [DataController::class, 'store'])->name('data.store');
+  Route::get('/destroy', [DataController::class, 'destroyAll'])->name('data.destroy.all');
   Route::post('/import', [DataController::class, 'import'])->name('data.import');
   Route::post('/{id}/update', [DataController::class, 'update'])->name('data.update');
   Route::get('/{id}/destroy', [DataController::class, 'destroy'])->name('data.destroy');
