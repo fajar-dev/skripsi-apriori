@@ -194,7 +194,7 @@
 
                 <div class="modal fade" tabindex="-1" id="import">
                   <div class="modal-dialog modal-dialog-centered">
-                      <form method="POST" action="{{ route('data.store') }}" class="modal-content" id="form">
+                      <form method="POST" action="{{ route('data.import') }}" enctype="multipart/form-data" class="modal-content" id="form">
                         @csrf
                           <div class="modal-header">
                               <h3 class="modal-title">Import Itemset</h3>
@@ -204,13 +204,15 @@
                           </div>
                           <div class="modal-body">
                             <div class="col mb-5">
-                              <label for="exampleFormControlInput1" class="required form-label">Family Number ID</label>
-                              <input type="number" name="family_number_id" class="form-control form-control-solid @error('family_number_id') is-invalid @enderror"  value="{{ old('family_number_id') }}" placeholder="Family Number ID" required/>
-                              @error('family_number_id')
-                                <div class="invalid-feedback">
-                                  {{ $message }}
+                                <div id="dropZone" class="drop-zone border-2 border-dashed rounded p-4 text-center bg-light py-20 cursor-pointer">
+                                    <p class="mb-0 fs-5 fw-semibold">Drag and drop a file here or click to select</p>
+                                    <input type="file" name="file" id="fileInput" class="form-control d-none @error('file') is-invalid @enderror" required/>
                                 </div>
-                              @enderror
+                                @error('file')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                           </div>
                           <div class="modal-footer">
@@ -336,6 +338,37 @@
 @endsection
 
 @section('script')
+<script>
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+
+  dropZone.addEventListener('click', () => {
+      fileInput.click();
+  });
+
+  dropZone.addEventListener('dragover', (event) => {
+      event.preventDefault();
+      dropZone.classList.add('drag-over');
+  });
+
+  dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('drag-over');
+  });
+
+  dropZone.addEventListener('drop', (event) => {
+      event.preventDefault();
+      dropZone.classList.remove('drag-over');
+      if (event.dataTransfer.files.length) {
+          fileInput.files = event.dataTransfer.files;
+      }
+  });
+
+  fileInput.addEventListener('change', () => {
+      const fileName = fileInput.files[0] ? fileInput.files[0].name : 'Drag and drop a file here or click to select';
+      dropZone.querySelector('p').textContent = fileName;
+  });
+</script>
+
 <script>
   document.querySelectorAll('form').forEach(function(form) {
     form.addEventListener('submit', function(event) {

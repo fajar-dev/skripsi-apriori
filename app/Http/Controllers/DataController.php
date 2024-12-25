@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Data;
+use App\Imports\DataImport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 
 class DataController extends Controller
@@ -85,6 +87,14 @@ class DataController extends Controller
     }
 
     public function import(Request $request){
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:xlsx,csv'
+        ]);
+        if ($validator->fails()) {
+            return redirect()->route('data')->with('error', 'Validation Error')->withInput()->withErrors($validator);
+        }
 
+        Excel::import(new DataImport, $request->file('file'));
+        return redirect()->route('data')->with('success','Data has been imported successfully');
     }
 }

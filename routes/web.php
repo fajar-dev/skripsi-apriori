@@ -18,10 +18,12 @@ Route::get('/auth/logout', [AuthController::class, 'logout'])->name('logout')->m
 Route::prefix('/data')->group(function () {
   Route::get('/', [DataController::class, 'index'])->name('data');
   Route::post('/', [DataController::class, 'store'])->name('data.store');
-  Route::post('/{id}', [DataController::class, 'update'])->name('data.update');
-  Route::get('/{id}', [DataController::class, 'destroy'])->name('data.destroy');
+  Route::post('/import', [DataController::class, 'import'])->name('data.import');
+  Route::post('/{id}/update', [DataController::class, 'update'])->name('data.update');
+  Route::get('/{id}/destroy', [DataController::class, 'destroy'])->name('data.destroy');
 })->middleware(['auth']);
 
-Route::get('/analyst', [AnalystController::class, 'index'])->name('analyst');
-Route::get('/analyst/apriori', [AnalystController::class, 'apriori'])->name('analyst.apriori');
-
+Route::prefix('/analyst')->group(function () {
+  Route::get('/', [AnalystController::class, 'index'])->name('analyst');
+  Route::get('/apriori', [AnalystController::class, 'apriori'])->name('analyst.apriori');
+})->middleware(['auth']);
