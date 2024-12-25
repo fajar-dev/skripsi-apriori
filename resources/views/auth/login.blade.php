@@ -12,40 +12,8 @@
             <div class="text-gray-500 fw-semibold fs-5">Welcome!, Please enter your credential</div>
           </div>
   
-          @if (session()->has('success'))
-          <div class="alert alert-dismissible bg-light-success d-flex flex-column flex-sm-row align-items-center p-5 mb-10">
-            <i class="ki-duotone ki-notification-bing fs-2hx text-success me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
-            <div class="d-flex flex-column pe-0 pe-sm-10">
-                <span>{{ session('success') }}</span>
-            </div>
-            <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto" data-bs-dismiss="alert">
-                <i class="ki-duotone ki-cross fs-1 text-success"><span class="path1"></span><span class="path2"></span></i>
-            </button>
-          </div>
-          @elseif (session()->has('warning'))
-          <div class="alert alert-dismissible bg-light-warning d-flex flex-column flex-sm-row align-items-center p-5 mb-10">
-            <i class="ki-duotone ki-notification-bing fs-2hx text-warning me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
-            <div class="d-flex flex-column pe-0 pe-sm-10">
-                <span>{{ session('warning') }}</span>
-            </div>
-            <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto" data-bs-dismiss="alert">
-                <i class="ki-duotone ki-cross fs-1 text-warning"><span class="path1"></span><span class="path2"></span></i>
-            </button>
-          </div>
-          @elseif (session()->has('error'))
-          <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row align-items-center p-5 mb-10">
-            <i class="ki-duotone ki-notification-bing fs-2hx text-danger me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
-            <div class="d-flex flex-column pe-0 pe-sm-10">
-                <span class="fw-semibold">{{ session('error') }}</span>
-            </div>
-            <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto" data-bs-dismiss="alert">
-                <i class="ki-duotone ki-cross fs-1 text-danger"><span class="path1"></span><span class="path2"></span></i>
-            </button>
-          </div>
-          @endif
-  
           <div class="fv-row mb-8">
-            <input type="text" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent @error('email') is-invalid @enderror" value="{{ old('email') }}" />
+            <input type="email" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent @error('email') is-invalid @enderror" value="{{ old('email') }}" />
             @error('email')
             <div class="text-sm text-danger">
               {{ $message }}

@@ -8,7 +8,7 @@
         <form class="form w-100" action="{{ route('reset', $token) }}" method="POST" id="loginForm">
           @csrf
           <div class="mb-11">
-            <h1 class="text-gray-900 fw-bolder mb-3 fs-3qx">Reset Password</h1>
+            <h1 class="text-gray-900 fw-bolder mb-3 fs-2qx">Reset Password</h1>
             <div class="text-gray-500 fw-semibold fs-5">Please enter your new password </div>
           </div>
   
