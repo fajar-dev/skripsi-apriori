@@ -13,19 +13,19 @@
         </div>
       </div>
       <div class="menu-item">
-        <a class="menu-link active" href="index.html">
+        <a class="menu-link @if($title == "Itemset") active @endif" href="{{ route('data') }}">
           <span class="menu-bullet">
             <span class="bullet bullet-dot"></span>
           </span>
-          <span class="menu-title">Data</span>
+          <span class="menu-title">Itemset</span>
         </a>
       </div>
       <div class="menu-item">
-        <a class="menu-link" href="dashboards/ecommerce.html">
+        <a class="menu-link @if($title == "Analyst") active @endif" href="{{ route('analyst') }}">
           <span class="menu-bullet">
             <span class="bullet bullet-dot"></span>
           </span>
-          <span class="menu-title">Analitycs</span>
+          <span class="menu-title">Analyst</span>
         </a>
       </div>
     </div>

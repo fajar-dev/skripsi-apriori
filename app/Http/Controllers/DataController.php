@@ -29,7 +29,6 @@ class DataController extends Controller
             'income' => 'required',
             'spending' => 'required',
             'job' => 'required',
-            'disability_type' => 'required',
             'residence_condition' => 'required',
             'electricity_capacity' => 'required'
         ]);
@@ -59,7 +58,6 @@ class DataController extends Controller
             'income' => 'required',
             'spending' => 'required',
             'job' => 'required',
-            'disability_type' => 'required',
             'residence_condition' => 'required',
             'electricity_capacity' => 'required'
         ]);
