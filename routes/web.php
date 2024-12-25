@@ -1,14 +1,26 @@
 <?php
 
-use App\Http\Controllers\AnalystController;
-use App\Http\Controllers\AnalyticsController;
-use App\Http\Controllers\DataController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DataController;
+use App\Http\Controllers\AnalystController;
 
-Route::get('/data', [DataController::class, 'index'])->name('data');
-Route::post('/data', [DataController::class, 'store'])->name('data.store');
-Route::post('/data/{id}', [DataController::class, 'update'])->name('data.update');
-Route::get('/data/{id}', [DataController::class, 'destroy'])->name('data.destroy');
+Route::prefix('/auth')->group(function () {
+  Route::get('/login', [AuthController::class, 'login'])->name('login');
+  Route::post('/login', [AuthController::class, 'loginSubmit'])->name('login.submit');
+  Route::get('/forgot-password', [AuthController::class, 'forgot'])->name('forgot');
+  Route::post('/forgot-password', [AuthController::class, 'forgotSubmit'])->name('forgot.submit');
+  Route::get('/forget/{token}/reset', [AuthController::class, 'reset'])->name('reset');
+  Route::post('/forget/{token}/reset', [AuthController::class, 'resetSubmit'])->name('reset.submit');
+})->middleware(['guest']);
+Route::get('/auth/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
+Route::prefix('/data')->group(function () {
+  Route::get('/', [DataController::class, 'index'])->name('data');
+  Route::post('/', [DataController::class, 'store'])->name('data.store');
+  Route::post('/{id}', [DataController::class, 'update'])->name('data.update');
+  Route::get('/{id}', [DataController::class, 'destroy'])->name('data.destroy');
+})->middleware(['auth']);
 
 Route::get('/analyst', [AnalystController::class, 'index'])->name('analyst');
 Route::get('/analyst/apriori', [AnalystController::class, 'apriori'])->name('analyst.apriori');
