@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Data;
+use App\Services\AprioriService;
 use Illuminate\Http\Request;
 
 class AnalystController extends Controller
@@ -15,7 +16,7 @@ class AnalystController extends Controller
         return view('pages.analyst',  $data);
     }
 
-    public function apriori()
+    public function apriori(Request $request)
     {
         $data = Data::all();
 
@@ -45,9 +46,9 @@ class AnalystController extends Controller
             $transactions[] = $itemset;
         }
 
-        $minSupport = 0.2;      
-        $minConfidence = 0.6;   
-        $apriori = new \App\Services\AprioriService($transactions, $minSupport, $minConfidence);
+        $minSupport = $request->input('minSupport');     
+        $minConfidence = $request->input('minConfidence');  
+        $apriori = new AprioriService($transactions, $minSupport, $minConfidence);
         $apriori->run();
 
         $data = [
