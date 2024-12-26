@@ -87,7 +87,7 @@
         </div>
     </div>
 
-    <div class="col-lg-6">
+    <div class="col-lg-12">
         <div class="card card-flush h-xl-100">
             <div class="card-header pt-7">
                 <h3 class="card-title align-items-start flex-column">
@@ -99,7 +99,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-12">
         <div class="card card-flush h-xl-100">
             <div class="card-header pt-7">
                 <h3 class="card-title align-items-start flex-column">
