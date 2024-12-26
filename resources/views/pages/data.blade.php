@@ -11,10 +11,11 @@
                 </h3>
                 <div class="card-toolbar">
                     <div class="d-flex flex-stack flex-wrap gap-4">
-                        <div class="position-relative my-1">
+                        <form method="GET" class="position-relative my-1">
+                            <input type="hidden" name="page" value="{{ request('page', 1) }}">
                             <i class="ki-outline ki-magnifier fs-2 position-absolute top-50 translate-middle-y ms-4"></i>
-                            <input type="text" data-kt-table-widget-4="search" class="form-control w-200px fs-7 ps-12" placeholder="Search" />
-                        </div>
+                            <input type="text" name="q" value="{{ request('q') }}" class="form-control w-200px fs-7 ps-12" placeholder="Search" />
+                        </form>
                         <a href="#" class="btn btn-icon btn-secondary" data-bs-toggle="modal" data-bs-target="#add">
                           <i class="ki-outline ki-plus fs-1"></i>                        
                         </a>
@@ -60,27 +61,27 @@
                                 <label for="exampleFormControlInput1" class="required form-label">District</label>
                                 <select name="district" id="district" class="form-control form-control-solid @error('district') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" required>
                                   <option></option>
-                                  <option value="Medan Amplas" {{ old('district') == 'Medan Amplas' ? 'selected' : '' }}>Medan Amplas</option>
-                                  <option value="Medan Area" {{ old('district') == 'Medan Area' ? 'selected' : '' }}>Medan Area</option>
-                                  <option value="Medan Barat" {{ old('district') == 'Medan Barat' ? 'selected' : '' }}>Medan Barat</option>
-                                  <option value="Medan Baru" {{ old('district') == 'Medan Baru' ? 'selected' : '' }}>Medan Baru</option>
-                                  <option value="Medan Belawan" {{ old('district') == 'Medan Belawan' ? 'selected' : '' }}>Medan Belawan</option>
-                                  <option value="Medan Deli" {{ old('district') == 'Medan Deli' ? 'selected' : '' }}>Medan Deli</option>
-                                  <option value="Medan Denai" {{ old('district') == 'Medan Denai' ? 'selected' : '' }}>Medan Denai</option>
-                                  <option value="Medan Helvetia" {{ old('district') == 'Medan Helvetia' ? 'selected' : '' }}>Medan Helvetia</option>
-                                  <option value="Medan Johor" {{ old('district') == 'Medan Johor' ? 'selected' : '' }}>Medan Johor</option>
-                                  <option value="Medan Kota" {{ old('district') == 'Medan Kota' ? 'selected' : '' }}>Medan Kota</option>
-                                  <option value="Medan Labuhan" {{ old('district') == 'Medan Labuhan' ? 'selected' : '' }}>Medan Labuhan</option>
-                                  <option value="Medan Maimun" {{ old('district') == 'Medan Maimun' ? 'selected' : '' }}>Medan Maimun</option>
-                                  <option value="Medan Marelan" {{ old('district') == 'Medan Marelan' ? 'selected' : '' }}>Medan Marelan</option>
-                                  <option value="Medan Perjuangan" {{ old('district') == 'Medan Perjuangan' ? 'selected' : '' }}>Medan Perjuangan</option>
-                                  <option value="Medan Petisah" {{ old('district') == 'Medan Petisah' ? 'selected' : '' }}>Medan Petisah</option>
-                                  <option value="Medan Polonia" {{ old('district') == 'Medan Polonia' ? 'selected' : '' }}>Medan Polonia</option>
-                                  <option value="Medan Selayang" {{ old('district') == 'Medan Selayang' ? 'selected' : '' }}>Medan Selayang</option>
-                                  <option value="Medan Sunggal" {{ old('district') == 'Medan Sunggal' ? 'selected' : '' }}>Medan Sunggal</option>
-                                  <option value="Medan Tembung" {{ old('district') == 'Medan Tembung' ? 'selected' : '' }}>Medan Tembung</option>
-                                  <option value="Medan Timur" {{ old('district') == 'Medan Timur' ? 'selected' : '' }}>Medan Timur</option>
-                                  <option value="Medan Tuntungan" {{ old('district') == 'Medan Tuntungan' ? 'selected' : '' }}>Medan Tuntungan</option>
+                                  <option value="MEDAN AMPLAS" {{ old('district') == 'MEDAN AMPLAS' ? 'selected' : '' }}>MEDAN AMPLAS</option>
+                                  <option value="MEDAN AREA" {{ old('district') == 'MEDAN AREA' ? 'selected' : '' }}>MEDAN AREA</option>
+                                  <option value="MEDAN BARAT" {{ old('district') == 'MEDAN BARAT' ? 'selected' : '' }}>MEDAN BARAT</option>
+                                  <option value="MEDAN BARU" {{ old('district') == 'MEDAN BARU' ? 'selected' : '' }}>MEDAN BARU</option>
+                                  <option value="MEDAN BELAWAN" {{ old('district') == 'MEDAN BELAWAN' ? 'selected' : '' }}>MEDAN BELAWAN</option>
+                                  <option value="MEDAN DELI" {{ old('district') == 'MEDAN DELI' ? 'selected' : '' }}>MEDAN DELI</option>
+                                  <option value="MEDAN DENAI" {{ old('district') == 'MEDAN DENAI' ? 'selected' : '' }}>MEDAN DENAI</option>
+                                  <option value="MEDAN HELVETIA" {{ old('district') == 'MEDAN HELVETIA' ? 'selected' : '' }}>MEDAN HELVETIA</option>
+                                  <option value="MEDAN JOHOR" {{ old('district') == 'MEDAN JOHOR' ? 'selected' : '' }}>MEDAN JOHOR</option>
+                                  <option value="MEDAN KOTA" {{ old('district') == 'MEDAN KOTA' ? 'selected' : '' }}>MEDAN KOTA</option>
+                                  <option value="MEDAN LABUHAN" {{ old('district') == 'MEDAN LABUHAN' ? 'selected' : '' }}>MEDAN LABUHAN</option>
+                                  <option value="MEDAN MAIMUN" {{ old('district') == 'MEDAN MAIMUN' ? 'selected' : '' }}>MEDAN MAIMUN</option>
+                                  <option value="MEDAN MARELAN" {{ old('district') == 'MEDAN MARELAN' ? 'selected' : '' }}>MEDAN MARELAN</option>
+                                  <option value="MEDAN PERJUANGAN" {{ old('district') == 'MEDAN PERJUANGAN' ? 'selected' : '' }}>MEDAN PERJUANGAN</option>
+                                  <option value="MEDAN PETISAH" {{ old('district') == 'MEDAN PETISAH' ? 'selected' : '' }}>MEDAN PETISAH</option>
+                                  <option value="MEDAN POLONIA" {{ old('district') == 'MEDAN POLONIA' ? 'selected' : '' }}>MEDAN POLONIA</option>
+                                  <option value="MEDAN SELAYANG" {{ old('district') == 'MEDAN SELAYANG' ? 'selected' : '' }}>MEDAN SELAYANG</option>
+                                  <option value="MEDAN SUNGGAL" {{ old('district') == 'MEDAN SUNGGAL' ? 'selected' : '' }}>MEDAN SUNGGAL</option>
+                                  <option value="MEDAN TEMBUNG" {{ old('district') == 'MEDAN TEMBUNG' ? 'selected' : '' }}>MEDAN TEMBUNG</option>
+                                  <option value="MEDAN TIMUR" {{ old('district') == 'MEDAN TIMUR' ? 'selected' : '' }}>MEDAN TIMUR</option>
+                                  <option value="MEDAN TUNTUNGAN" {{ old('district') == 'MEDAN TUNTUNGAN' ? 'selected' : '' }}>MEDAN TUNTUNGAN</option>
                                 </select>
                                 @error('district')
                                   <div class="invalid-feedback">
@@ -335,6 +336,174 @@
         </div>
     </div>
 </div>
+
+@foreach ($data as $item)
+<div class="modal fade" tabindex="-1" id="edit{{$item->id}}">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+      <form method="POST" action="{{ route('data.update', $item->id) }}" class="modal-content" id="form">
+        @csrf
+          <div class="modal-header">
+              <h3 class="modal-title">Edit Itemset</h3>
+              <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                  <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+              </div>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col mb-5">
+                <label for="family_number_id" class="required form-label">Family Number ID</label>
+                <input type="number" name="family_number_id" class="form-control form-control-solid @error('family_number_id') is-invalid @enderror" value="{{ old('family_number_id', $item->family_number_id) }}" placeholder="Family Number ID" required />
+                @error('family_number_id')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
+              <div class="col mb-5">
+                <label for="name" class="required form-label">Name</label>
+                <input type="text" name="name" class="form-control form-control-solid @error('name') is-invalid @enderror" value="{{ old('name', $item->name) }}" placeholder="Name" required />
+                @error('name')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
+              <div class="col mb-5">
+                <label for="district" class="required form-label">District</label>
+                <select name="district" id="district{{$item->id}}" class="form-control form-control-solid @error('district') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" required>
+                  <option></option>
+                  <option value="MEDAN AMPLAS" {{ old('district', $item->district) == 'MEDAN AMPLAS' ? 'selected' : '' }}>MEDAN AMPLAS</option>
+                  <option value="MEDAN AREA" {{ old('district', $item->district) == 'MEDAN AREA' ? 'selected' : '' }}>MEDAN AREA</option>
+                  <option value="MEDAN BARAT" {{ old('district', $item->district) == 'MEDAN BARAT' ? 'selected' : '' }}>MEDAN BARAT</option>
+                  <option value="MEDAN BARU" {{ old('district', $item->district) == 'MEDAN BARU' ? 'selected' : '' }}>MEDAN BARU</option>
+                  <option value="MEDAN BELAWAN" {{ old('district', $item->district) == 'MEDAN BELAWAN' ? 'selected' : '' }}>MEDAN BELAWAN</option>
+                  <option value="MEDAN DELI" {{ old('district', $item->district) == 'MEDAN DELI' ? 'selected' : '' }}>MEDAN DELI</option>
+                  <option value="MEDAN DENAI" {{ old('district', $item->district) == 'MEDAN DENAI' ? 'selected' : '' }}>MEDAN DENAI</option>
+                  <option value="MEDAN HELVETIA" {{ old('district', $item->district) == 'MEDAN HELVETIA' ? 'selected' : '' }}>MEDAN HELVETIA</option>
+                  <option value="MEDAN JOHOR" {{ old('district', $item->district) == 'MEDAN JOHOR' ? 'selected' : '' }}>MEDAN JOHOR</option>
+                  <option value="MEDAN KOTA" {{ old('district', $item->district) == 'MEDAN KOTA' ? 'selected' : '' }}>MEDAN KOTA</option>
+                  <option value="MEDAN LABUHAN" {{ old('district', $item->district) == 'MEDAN LABUHAN' ? 'selected' : '' }}>MEDAN LABUHAN</option>
+                  <option value="MEDAN MAIMUN" {{ old('district', $item->district) == 'MEDAN MAIMUN' ? 'selected' : '' }}>MEDAN MAIMUN</option>
+                  <option value="MEDAN MARELAN" {{ old('district', $item->district) == 'MEDAN MARELAN' ? 'selected' : '' }}>MEDAN MARELAN</option>
+                  <option value="MEDAN PERJUANGAN" {{ old('district', $item->district) == 'MEDAN PERJUANGAN' ? 'selected' : '' }}>MEDAN PERJUANGAN</option>
+                  <option value="MEDAN PETISAH" {{ old('district', $item->district) == 'MEDAN PETISAH' ? 'selected' : '' }}>MEDAN PETISAH</option>
+                  <option value="MEDAN POLONIA" {{ old('district', $item->district) == 'MEDAN POLONIA' ? 'selected' : '' }}>MEDAN POLONIA</option>
+                  <option value="MEDAN SELAYANG" {{ old('district', $item->district) == 'MEDAN SELAYANG' ? 'selected' : '' }}>MEDAN SELAYANG</option>
+                  <option value="MEDAN SUNGGAL" {{ old('district', $item->district) == 'MEDAN SUNGGAL' ? 'selected' : '' }}>MEDAN SUNGGAL</option>
+                  <option value="MEDAN TEMBUNG" {{ old('district', $item->district) == 'MEDAN TEMBUNG' ? 'selected' : '' }}>MEDAN TEMBUNG</option>
+                  <option value="MEDAN TIMUR" {{ old('district', $item->district) == 'MEDAN TIMUR' ? 'selected' : '' }}>MEDAN TIMUR</option>
+                  <option value="MEDAN TUNTUNGAN" {{ old('district', $item->district) == 'MEDAN TUNTUNGAN' ? 'selected' : '' }}>MEDAN TUNTUNGAN</option>
+                </select>
+                @error('district')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
+            </div>
+            <div class="row">
+              <div class="col mb-5">
+                <label for="income" class="required form-label">Income</label>
+                <select name="income" id="income{{$item->id}}" class="form-control form-control-solid @error('income') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" required>
+                  <option></option>
+                  <option value="Rp 0 - 1.000.000" {{ old('income', $item->income) == 'Rp 0 - 1.000.000' ? 'selected' : '' }}>Rp 0 - 1.000.000</option>
+                  <option value="Rp 1.000.000 - 3.000.000" {{ old('income', $item->income) == 'Rp 1.000.000 - 3.000.000' ? 'selected' : '' }}>Rp 1.000.000 - 3.000.000</option>
+                  <option value="Rp 3.000.000 - 4.500.000" {{ old('income', $item->income) == 'Rp 3.000.000 - 4.500.000' ? 'selected' : '' }}>Rp 3.000.000 - 4.500.000</option>
+                  <option value="Rp 4.500.000 - 6.000.000" {{ old('income', $item->income) == 'Rp 4.500.000 - 6.000.000' ? 'selected' : '' }}>Rp 4.500.000 - 6.000.000</option>
+                  <option value="> Rp 6.000.000" {{ old('income', $item->income) == '> Rp 6.000.000' ? 'selected' : '' }}>> Rp 6.000.000</option>
+                </select>
+                @error('income')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
+              <div class="col mb-5">
+                <label for="spending" class="required form-label">Spending</label>
+                <select name="spending" id="spending{{$item->id}}" class="form-control form-control-solid @error('spending') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" required>
+                  <option></option>
+                  <option value="Rp 0 - 1.000.000" {{ old('spending', $item->spending) == 'Rp 0 - 1.000.000' ? 'selected' : '' }}>Rp 0 - 1.000.000</option>
+                  <option value="Rp 1.000.000 - 3.000.000" {{ old('spending', $item->spending) == 'Rp 1.000.000 - 3.000.000' ? 'selected' : '' }}>Rp 1.000.000 - 3.000.000</option>
+                  <option value="Rp 3.000.000 - 4.500.000" {{ old('spending', $item->spending) == 'Rp 3.000.000 - 4.500.000' ? 'selected' : '' }}>Rp 3.000.000 - 4.500.000</option>
+                  <option value="Rp 4.500.000 - 6.000.000" {{ old('spending', $item->spending) == 'Rp 4.500.000 - 6.000.000' ? 'selected' : '' }}>Rp 4.500.000 - 6.000.000</option>
+                  <option value="> Rp 6.000.000" {{ old('spending', $item->spending) == '> Rp 6.000.000' ? 'selected' : '' }}>> Rp 6.000.000</option>
+                </select>
+                @error('spending')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
+            </div>
+            <div class="row">
+              <div class="col mb-5">
+                <label for="job" class="required form-label">Job</label>
+                <input type="text" name="job" class="form-control form-control-solid @error('job') is-invalid @enderror" value="{{ old('job', $item->job) }}" placeholder="Job" required />
+                @error('job')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
+              <div class="col mb-5">
+                <label for="disability_type" class="required form-label">Disability Type</label>
+                <select name="disability_type" id="disability_type{{$item->id}}" class="form-control form-control-solid @error('disability_type') is-invalid @enderror" data-control="select2" data-placeholder="Select an option">
+                  <option></option>
+                  <option value="Disabilitas Fisik" {{ old('disability_type', $item->disability_type) == 'Disabilitas Fisik' ? 'selected' : '' }}>Disabilitas Fisik</option>
+                  <option value="Disabilitas Rungu/Wicara" {{ old('disability_type', $item->disability_type) == 'Disabilitas Rungu/Wicara' ? 'selected' : '' }}>Disabilitas Rungu/Wicara</option>
+                  <option value="Disabilitas Mental/Jiwa" {{ old('disability_type', $item->disability_type) == 'Disabilitas Mental/Jiwa' ? 'selected' : '' }}>Disabilitas Mental/Jiwa</option>
+                  <option value="Disabilitas Lainnya" {{ old('disability_type', $item->disability_type) == 'Disabilitas Lainnya' ? 'selected' : '' }}>Disabilitas Lainnya</option>
+                </select>
+                @error('disability_type')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
+            </div>
+            <div class="row">
+              <div class="col mb-5">
+                <label for="residence_condition" class="required form-label">Residence Condition</label>
+                <select name="residence_condition" id="residence_condition{{$item->id}}" class="form-control form-control-solid @error('residence_condition') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" required>
+                  <option></option>
+                  <option value="Papan" {{ old('residence_condition', $item->residence_condition) == 'Papan' ? 'selected' : '' }}>Papan</option>
+                  <option value="Semi Permanen" {{ old('residence_condition', $item->residence_condition) == 'Semi Permanen' ? 'selected' : '' }}>Semi Permanen</option>
+                  <option value="Permanen" {{ old('residence_condition', $item->residence_condition) == 'Permanen' ? 'selected' : '' }}>Permanen</option>
+                </select>
+                @error('residence_condition')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
+              <div class="col mb-5">
+                <label for="electricity_capacity" class="required form-label">Electricity Capacity</label>
+                <select name="electricity_capacity" id="electricity_capacity{{$item->id}}" class="form-control form-control-solid @error('electricity_capacity') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" required>
+                  <option></option>
+                  <option value="450 watt" {{ old('electricity_capacity', $item->electricity_capacity) == '450 watt' ? 'selected' : '' }}>450 watt</option>
+                  <option value="900 watt" {{ old('electricity_capacity', $item->electricity_capacity) == '900 watt' ? 'selected' : '' }}>900 watt</option>
+                  <option value="> 900 watt" {{ old('electricity_capacity', $item->electricity_capacity) == '> 900 watt' ? 'selected' : '' }}>> 900 watt</option>
+                </select>
+                @error('electricity_capacity')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" id="submit" class="btn btn-dark">
+                <span class="indicator-label">Save</span>
+                <span class="indicator-progress" style="display: none;">Loading... 
+                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+              </button>
+          </div>
+      </form>
+  </div>
+</div>
+@endforeach
 @endsection
 
 @section('script')
