@@ -10,8 +10,8 @@
                     <span class="text-gray-500 mt-1 fw-semibold fs-6">{{ $data->total() }} Total Data</span>
                 </h3>
                 <div class="card-toolbar">
-                    <div class="d-flex flex-stack flex-wrap gap-4">
-                        <form method="GET" class="position-relative my-1">
+                    <div class="d-md-flex flex-stack flex-wrap gap-4">
+                        <form method="GET" class="position-relative my-1 mb-md-0 mb-5">
                             <input type="hidden" name="page" value="{{ request('page', 1) }}">
                             <i class="ki-outline ki-magnifier fs-2 position-absolute top-50 translate-middle-y ms-4"></i>
                             <input type="text" name="q" value="{{ request('q') }}" class="form-control w-200px fs-7 ps-12" placeholder="Search" />
@@ -39,7 +39,7 @@
                           </div>
                           <div class="modal-body">
                             <div class="row">
-                              <div class="col mb-5">
+                              <div class="col-md mb-5">
                                 <label for="exampleFormControlInput1" class="required form-label">Family Number ID</label>
                                 <input type="number" name="family_number_id" class="form-control form-control-solid @error('family_number_id') is-invalid @enderror"  value="{{ old('family_number_id') }}" placeholder="Family Number ID" required/>
                                 @error('family_number_id')
@@ -48,7 +48,7 @@
                                   </div>
                                 @enderror
                               </div>
-                              <div class="col mb-5">
+                              <div class="col-md mb-5">
                                 <label for="exampleFormControlInput1" class="required form-label">Name</label>
                                 <input type="text" name="name" class="form-control form-control-solid @error('name') is-invalid @enderror"  value="{{ old('name') }}" placeholder="Name" required/>
                                 @error('name')
@@ -57,7 +57,7 @@
                                   </div>
                                 @enderror
                               </div>
-                              <div class="col mb-5">
+                              <div class="col-md mb-5">
                                 <label for="exampleFormControlInput1" class="required form-label">District</label>
                                 <select name="district" id="district" class="form-control form-control-solid @error('district') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" required>
                                   <option></option>
@@ -91,7 +91,7 @@
                               </div>
                             </div>
                             <div class="row">
-                              <div class="col mb-5">
+                              <div class="col-md mb-5">
                                 <label for="exampleFormControlInput1" class="required form-label">Income</label>
                                 <select name="income" id="income" class="form-control form-control-solid @error('income') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" required>
                                   <option></option>
@@ -107,7 +107,7 @@
                                   </div>
                                 @enderror
                               </div>
-                              <div class="col mb-5">
+                              <div class="col-md mb-5">
                                 <label for="exampleFormControlInput1" class="required form-label">Spending</label>
                                 <select name="spending" id="spending" class="form-control form-control-solid @error('spending') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" required>
                                   <option></option>
@@ -125,7 +125,7 @@
                               </div>
                             </div>
                             <div class="row">
-                              <div class="col mb-5">
+                              <div class="col-md mb-5">
                                 <label for="exampleFormControlInput1" class="required form-label">Job</label>
                                 <input type="text" name="job" class="form-control form-control-solid @error('job') is-invalid @enderror"  value="{{ old('job') }}" placeholder="Job" required/>
                                 @error('job')
@@ -134,7 +134,7 @@
                                   </div>
                                 @enderror
                               </div>
-                              <div class="col mb-5">
+                              <div class="col-md mb-5">
                                 <label for="exampleFormControlInput1" class="form-label">Disability Type</label>
                                 <select name="disability_type" id="disability_type" class="form-control form-control-solid @error('disability_type') is-invalid @enderror" data-control="select2" data-placeholder="Select an option">
                                   <option></option>
@@ -151,7 +151,7 @@
                               </div>
                             </div>
                             <div class="row">
-                              <div class="col mb-5">
+                              <div class="col-md mb-5">
                                 <label for="exampleFormControlInput1" class="required form-label">Residence Condition</label>
                                 <select name="residence_condition" id="residence_condition" class="form-control form-control-solid @error('residence_condition') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" required>
                                   <option></option>
@@ -165,7 +165,7 @@
                                   </div>
                                 @enderror
                               </div>
-                              <div class="col mb-5">
+                              <div class="col-md mb-5">
                                 <label for="exampleFormControlInput1" class="required form-label">Electricity Capacity</label>
                                 <select name="electricity_capacity" id="electricity_capacity" class="form-control form-control-solid @error('electricity_capacity') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" required>
                                   <option></option>
@@ -285,8 +285,8 @@
                 </table>
             </div>
             <div class="card-footer">
-              <div class="d-flex flex-stack flex-wrap my-3">
-                <div class="fs-6 fw-semibold text-gray-700">
+              <div class="d-flex flex-stack justify-content-md-between justify-content-center flex-wrap my-3">
+                <div class="fs-6 fw-semibold text-gray-700 mb-5 mb-md-0">
                     Showing {{ $data->firstItem() ?? 0 }} to {{ $data->lastItem() }} of {{ $data->total() }}  records
                 </div>
                 <ul class="pagination">
@@ -350,7 +350,7 @@
           </div>
           <div class="modal-body">
             <div class="row">
-              <div class="col mb-5">
+              <div class="col-md mb-5">
                 <label for="family_number_id" class="required form-label">Family Number ID</label>
                 <input type="number" name="family_number_id" class="form-control form-control-solid @error('family_number_id') is-invalid @enderror" value="{{ old('family_number_id', $item->family_number_id) }}" placeholder="Family Number ID" required />
                 @error('family_number_id')
@@ -359,7 +359,7 @@
                   </div>
                 @enderror
               </div>
-              <div class="col mb-5">
+              <div class="col-md mb-5">
                 <label for="name" class="required form-label">Name</label>
                 <input type="text" name="name" class="form-control form-control-solid @error('name') is-invalid @enderror" value="{{ old('name', $item->name) }}" placeholder="Name" required />
                 @error('name')
@@ -368,7 +368,7 @@
                   </div>
                 @enderror
               </div>
-              <div class="col mb-5">
+              <div class="col-md mb-5">
                 <label for="district" class="required form-label">District</label>
                 <select name="district" id="district{{$item->id}}" class="form-control form-control-solid @error('district') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" required>
                   <option></option>
@@ -402,7 +402,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col mb-5">
+              <div class="col-md mb-5">
                 <label for="income" class="required form-label">Income</label>
                 <select name="income" id="income{{$item->id}}" class="form-control form-control-solid @error('income') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" required>
                   <option></option>
@@ -418,7 +418,7 @@
                   </div>
                 @enderror
               </div>
-              <div class="col mb-5">
+              <div class="col-md mb-5">
                 <label for="spending" class="required form-label">Spending</label>
                 <select name="spending" id="spending{{$item->id}}" class="form-control form-control-solid @error('spending') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" required>
                   <option></option>
@@ -436,7 +436,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col mb-5">
+              <div class="col-md mb-5">
                 <label for="job" class="required form-label">Job</label>
                 <input type="text" name="job" class="form-control form-control-solid @error('job') is-invalid @enderror" value="{{ old('job', $item->job) }}" placeholder="Job" required />
                 @error('job')
@@ -445,7 +445,7 @@
                   </div>
                 @enderror
               </div>
-              <div class="col mb-5">
+              <div class="col-md mb-5">
                 <label for="disability_type" class="required form-label">Disability Type</label>
                 <select name="disability_type" id="disability_type{{$item->id}}" class="form-control form-control-solid @error('disability_type') is-invalid @enderror" data-control="select2" data-placeholder="Select an option">
                   <option></option>
@@ -462,7 +462,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col mb-5">
+              <div class="col-md mb-5">
                 <label for="residence_condition" class="required form-label">Residence Condition</label>
                 <select name="residence_condition" id="residence_condition{{$item->id}}" class="form-control form-control-solid @error('residence_condition') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" required>
                   <option></option>
@@ -476,7 +476,7 @@
                   </div>
                 @enderror
               </div>
-              <div class="col mb-5">
+              <div class="col-md mb-5">
                 <label for="electricity_capacity" class="required form-label">Electricity Capacity</label>
                 <select name="electricity_capacity" id="electricity_capacity{{$item->id}}" class="form-control form-control-solid @error('electricity_capacity') is-invalid @enderror" data-control="select2" data-placeholder="Select an option" required>
                   <option></option>
