@@ -13,7 +13,7 @@
           </div>
   
           <div class="fv-row mb-8">
-            <input type="email" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent @error('email') is-invalid @enderror" value="{{ old('email') }}" />
+            <input type="email" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent @error('email') is-invalid @enderror" value="{{ old('email') ?? 'johndoe@example.com' }}" />
             @error('email')
             <div class="text-sm text-danger">
               {{ $message }}
@@ -21,7 +21,7 @@
             @enderror
           </div>
           <div class="fv-row mb-3">
-            <input type="password" placeholder="Password" name="password" autocomplete="off" class="form-control bg-transparent @error('password') is-invalid @enderror" />
+            <input type="password" placeholder="Password" name="password" autocomplete="off" class="form-control bg-transparent @error('password') is-invalid @enderror" value="password" />
             @error('password')
             <div class="text-sm text-danger">
               {{ $message }}
