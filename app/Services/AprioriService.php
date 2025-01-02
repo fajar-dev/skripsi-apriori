@@ -50,7 +50,7 @@ class AprioriService
         }
 
         $this->frequentItemsets = $L;
-        $this->generateAssociationRules();
+        $this->generateAssociationRules();  // memanggil fungsi pembentukan rule
         return $this;
     }
 
@@ -64,6 +64,11 @@ class AprioriService
         return $this->associationRules;
     }
 
+    /**
+     * ---------------------------
+     *  FUNGSI-FUNGSI PRIVATE
+     * ---------------------------
+     */
     private function createInitialItemsets()
     {
         // Kumpulkan semua item unik
@@ -163,32 +168,65 @@ class AprioriService
         }
     }
 
+    /**
+     * --------------------------------------------
+     *   FUNGSI PENTING: Generate Association Rules
+     * --------------------------------------------
+     */
     private function generateAssociationRules()
     {
+        $totalTransactions = count($this->transactions);
+
         // Ambil seluruh frequent itemset (k > 1)
         foreach ($this->frequentItemsets as $k => $itemsets) {
-            if ($k == 1) continue; // tidak perlu cari rule untuk itemset 1
+            // itemset tunggal (k=1) tidak menghasilkan rule (butuh min 2 item)
+            if ($k == 1) continue; 
 
-            foreach ($itemsets as $itemsetKey => $count) {
+            foreach ($itemsets as $itemsetKey => $countXY) {
+                // itemsetKey misal "pekerjaan=Lainnya|status=Layak"
+                // itemsetArray = ["pekerjaan=Lainnya", "status=Layak"], dll.
                 $itemsetArray = explode('|', $itemsetKey);
-                // cari seluruh subset non-kosong
+
+                // support(X union Y) = countXY / totalTransaksi
+                $supportXY = $countXY / ($totalTransactions ?: 1);
+
+                // cari seluruh subset non-kosong (k-1) untuk jadi antecedent
+                // sisanya = consequent
                 $allSubsets = $this->getSubsets($itemsetArray, count($itemsetArray) - 1);
+
                 foreach ($allSubsets as $subset) {
                     $remaining = array_diff($itemsetArray, $subset);
                     if (empty($remaining)) continue;
 
-                    // hitung support & confidence
+                    // hitung count(subset) = countX
                     $subsetKey = implode('|', $subset);
-                    $subsetCount = $this->getCountFromFrequentItemsets($subsetKey);
-                    $confidence = ($subsetCount == 0) ? 0 : ($count / $subsetCount);
+                    $countX = $this->getCountFromFrequentItemsets($subsetKey); 
+                    if ($countX == 0) continue; // Hindari div zero
 
-                    $supportItemset = $count / count($this->transactions);
+                    // support(X) = countX / totalTransaksi
+                    $supportX = $countX / $totalTransactions;
+
+                    // Confidence = support(X,Y) / support(X)
+                    $confidence = $supportXY / $supportX; 
+
+                    // Dapatkan support(Y)
+                    // Y = array_values($remaining) -> kita perlu countY
+                    $remainingKey = implode('|', $remaining);
+                    $countY = $this->getCountFromFrequentItemsets($remainingKey);
+                    $supportY = $countY / ($totalTransactions ?: 1);
+
+                    // Hitung Leverage
+                    // leverage = support(X,Y) - (support(X) * support(Y))
+                    $leverage = $supportXY - ($supportX * $supportY);
+
+                    // Simpan rule jika confidence >= minConfidence
                     if ($confidence >= $this->minConfidence) {
                         $this->associationRules[] = [
                             'antecedent' => $subset,
                             'consequent' => array_values($remaining),
-                            'support' => $supportItemset,
-                            'confidence' => $confidence
+                            'support' => $supportXY,
+                            'confidence' => $confidence,
+                            'leverage' => $leverage
                         ];
                     }
                 }

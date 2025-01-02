@@ -59,6 +59,7 @@
                             <th class="min-w-200px">Consequent</th>
                             <th class="text-end text-end min-w-50px">Support</th>
                             <th class="text-end text-end min-w-50px">Confidence</th>
+                            <th class="text-end text-end min-w-50px">Leverage</th>
                         </tr>
                     </thead>
                     <tbody class="fw-bold text-gray-600">
@@ -79,6 +80,7 @@
                                 </td>
                                 <td class="text-end">{{ $support }}</td>
                                 <td class="text-end">{{ $confidence }} %</td>
+                                <td class="text-end">{{ round($rule['leverage'], 4) }}</td>
                             </tr>
                         @endforeach
                     </tbody>
