@@ -8,30 +8,37 @@
                 <div class="card-header pt-7">
                     <h3 class="card-title align-items-start flex-column">
                         <span class="card-label fw-bold text-gray-800">Frequent Itemsets</span>
-                        <span class="text-gray-500 mt-1 fw-semibold fs-6">L{{ $k }} (itemset size: {{ $k }})</span>
+                        <span class="text-gray-500 mt-1 fw-semibold fs-6">
+                            L{{ $k }} (itemset size: {{ $k }})
+                        </span>
                     </h3>
                 </div>
                 <div class="card-body pt-2 table-responsive">
+                    @php
+                        $totalTrans = \App\Models\Data::count();
+                        $sortedItemsets = collect($itemsets)->sortByDesc(function($count, $itemsetKey) use ($totalTrans){
+                            return ($totalTrans == 0) ? 0 : $count / $totalTrans;
+                        });
+                    @endphp
                     <table class="table align-middle table-row-dashed fs-6 gy-3">
                         <thead>
                             <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
                                 <th class="min-w-200px">Itemset</th>
-                                <th class="text-end text-end min-w-50px">Count</th>
-                                <th class="text-end text-end min-w-50px">Support</th>
+                                <th class="text-end min-w-50px">Count</th>
+                                <th class="text-end min-w-50px">Support</th>
                             </tr>
                         </thead>
                         <tbody class="fw-bold text-gray-600">
-                        @php
-                            $totalTrans = \App\Models\Data::count();
-                        @endphp
-                        @foreach($itemsets as $itemsetKey => $count)
+                        @foreach($sortedItemsets as $itemsetKey => $count)
                             @php
-                                $support = $totalTrans == 0 ? 0 : $count / $totalTrans;
-                                $items = explode('|', $itemsetKey);
+                                $items   = explode('|', $itemsetKey);
+                                $support = ($totalTrans == 0) ? 0 : $count / $totalTrans;
                             @endphp
                             <tr>
                                 <td>
-                                    <span class="text-gray-800">{{ implode(', ', $items) }}</span>
+                                    <span class="text-gray-800">
+                                        {{ implode(', ', $items) }}
+                                    </span>
                                 </td>
                                 <td class="text-end">{{ $count }}</td>
                                 <td class="text-end">{{ round($support, 3) }}</td>
@@ -52,35 +59,45 @@
                 </h3>
             </div>
             <div class="card-body pt-2 table-responsive">
+                @php
+                    $sortedRules = collect($associationRules)->sortByDesc('confidence');
+                @endphp
+
                 <table class="table align-middle table-row-dashed fs-6 gy-3">
                     <thead>
                         <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
                             <th class="min-w-200px">Antecedent</th>
                             <th class="min-w-200px">Consequent</th>
-                            <th class="text-end text-end min-w-50px">Support</th>
-                            <th class="text-end text-end min-w-50px">Confidence</th>
-                            <th class="text-end text-end min-w-50px">Leverage</th>
+                            <th class="text-end min-w-50px">Support</th>
+                            <th class="text-end min-w-50px">Confidence</th>
+                            <th class="text-end min-w-50px">Leverage</th>
                         </tr>
                     </thead>
                     <tbody class="fw-bold text-gray-600">
-                        @foreach($associationRules as $rule)
+                        @foreach($sortedRules as $rule)
                             @php
-                                $ante = implode(', ', $rule['antecedent']);
-                                $cons = implode(', ', $rule['consequent']);
-                                // support & confidence
-                                $support = round($rule['support'], 3);
+                                $ante       = implode(', ', $rule['antecedent']);
+                                $cons       = implode(', ', $rule['consequent']);
+                                $support    = round($rule['support'], 3);
                                 $confidence = round($rule['confidence'] * 100, 2);
+                                $leverage   = isset($rule['leverage'])
+                                                ? round($rule['leverage'], 4)
+                                                : 0; // default 0 jika tidak ada
                             @endphp
                             <tr>
                                 <td>
-                                    <span class="text-gray-800">[{{ $ante }}]</span>
+                                    <span class="text-gray-800">
+                                        [{{ $ante }}]
+                                    </span>
                                 </td>
                                 <td>
-                                    <span class="text-gray-800">[{{ $cons }}]</span>
+                                    <span class="text-gray-800">
+                                        [{{ $cons }}]
+                                    </span>
                                 </td>
                                 <td class="text-end">{{ $support }}</td>
                                 <td class="text-end">{{ $confidence }} %</td>
-                                <td class="text-end">{{ round($rule['leverage'], 4) }}</td>
+                                <td class="text-end">{{ $leverage }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -89,11 +106,14 @@
         </div>
     </div>
 
+    <!-- Bagian Chart -->
     <div class="col-lg-12">
         <div class="card card-flush h-xl-100">
             <div class="card-header pt-7">
                 <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bold text-gray-800">Top 10 Frequent Itemsets (Bar Chart)</span>
+                    <span class="card-label fw-bold text-gray-800">
+                        Top 10 Frequent Itemsets (Bar Chart)
+                    </span>
                 </h3>
             </div>
             <div class="card-body pt-2">
@@ -101,11 +121,14 @@
             </div>
         </div>
     </div>
+
     <div class="col-lg-12">
         <div class="card card-flush h-xl-100">
             <div class="card-header pt-7">
                 <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bold text-gray-800">Association Rules (Scatter Chart)</span>
+                    <span class="card-label fw-bold text-gray-800">
+                        Association Rules (Scatter Chart)
+                    </span>
                 </h3>
             </div>
             <div class="card-body pt-2">
@@ -115,11 +138,11 @@
     </div>
 
     @php
-        // Flatten all itemsets & urutkan by support desc
+        // Flatten semua itemsets => disatukan dalam array $allItemsets
         $allItemsets = [];
         $totalTrans = \App\Models\Data::count();
 
-        foreach ($frequentItemsets as $k => $Lk) {
+        foreach ($frequentItemsets as $level => $Lk) {
             foreach ($Lk as $itemsetKey => $count) {
                 $supportVal = ($totalTrans == 0) ? 0 : $count / $totalTrans;
                 $allItemsets[] = [
@@ -130,21 +153,24 @@
             }
         }
 
+        // Urutkan $allItemsets berdasarkan support descending
         usort($allItemsets, function($a, $b) {
             return $b['support'] <=> $a['support'];
         });
+
+        // Ambil top 10
         $topItemsets = array_slice($allItemsets, 0, 10);
 
-        // Scatter data: confidence vs support
-        //     label = "antecedent => consequent"
+        // Data scatter (confidence vs support)
+        // label = "antecedent => consequent"
         $scatterRules = [];
-        foreach ($associationRules as $rule) {
+        foreach ($sortedRules as $rule) {
             $ante = implode(',', $rule['antecedent']);
             $cons = implode(',', $rule['consequent']);
             $label = $ante.' => '.$cons;
 
             $scatterRules[] = [
-                'label' => $label,
+                'label'      => $label,
                 'confidence' => $rule['confidence'],
                 'support'    => $rule['support']
             ];
@@ -155,9 +181,8 @@
 @section('script')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+    // ===== BAR CHART: top 10 frequent itemsets ====
     const topItemsets = @json($topItemsets);
-    const scatterRules = @json($scatterRules);
-
     const barLabels = topItemsets.map(d => d.itemset);
     const barSupports = topItemsets.map(d => d.support);
 
@@ -175,7 +200,7 @@
             }]
         },
         options: {
-            indexAxis: 'y',
+            indexAxis: 'y', // horizontal bar
             scales: {
                 x: {
                     min: 0,
@@ -200,7 +225,8 @@
         }
     });
 
-    // === SCATTER CHART: ASSOCIATION RULES ===
+    // ===== SCATTER CHART: association rules (confidence vs support) ====
+    const scatterRules = @json($scatterRules);
     const scatterData = scatterRules.map(r => ({
         x: r.confidence,
         y: r.support,
@@ -243,7 +269,6 @@
                             let lbl = context.raw.label || '';
                             let c = context.parsed.x.toFixed(3);
                             let s = context.parsed.y.toFixed(3);
-
                             return [
                                 lbl,
                                 'Confidence: ' + c,
@@ -258,5 +283,3 @@
 </script>
 @endsection
 @endsection
-
-
